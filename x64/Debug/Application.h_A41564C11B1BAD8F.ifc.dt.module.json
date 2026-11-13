@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\Application.obj",
+            "outputs": [
+                "x64\\Debug\\Application.h_A41564C11B1BAD8F.ifc.dt.module.json",
+                "x64\\Debug\\Application.h_A41564C11B1BAD8F.ifc.dt.d.json",
+                "x64\\Debug\\Application.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "C:\\Users\\PC\\source\\repos\\ZPG_ZAK0115\\ZPG_ZAK0115\\Application.h",
+                    "source-path": "c:\\users\\pc\\source\\repos\\zpg_zak0115\\zpg_zak0115\\application.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+﻿  Scanning sources for module dependencies...
+  EB408Scene.cpp
+  Scene.cpp
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  ZPG_ZAK0115.vcxproj -> C:\Users\PC\source\repos\ZPG_ZAK0115\x64\Debug\ZPG_ZAK0115.exe

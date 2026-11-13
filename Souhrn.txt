@@ -1,0 +1,21 @@
+Sohrn
+1) Picking – identifikace objektů ve scéně (Stencil Buffer):
+a) Každá instance DrawableObject automaticky dostává ID v rozsahu 1 až 255 (hodnota 0 je vyhrazena pro prázdné pozadí 8bitového stencil bufferu). Aby nedošlo přetečení tak resetuji buffer při změně scény. 
+b) V Scene::draw() je aktivován stencil test a před vykreslením každého objektu se do stencil bufferu zapíše jeho ID. Kliknutí levým tlačítkem myši souřadnice kurzoru z prostoru okna GLFW do souřadnic OpenGL a přečte ID objektu pod kurzorem. Vybraný statický objekt se zvýrazní změnou barvy na červenou, přičemž se jeho původní barva uloží a po odznačení se objektu vrátí zpět.
+   
+2) Unproject – převod souřadnic:
+a) Při kliknutí levým tlačítkem myši se kromě stencil indexu přečte z depth bufferu i hodnota hloubky pixelu. Ze souřadnic obrazovky, aktuální pohledové matice kamery, projekční matice a rozměrů viewportu vypočítáme světové souřadnice pomocí funkce. Pokud uživatel klikne do prázdného pozadí (depth == 1.0f), vložení se neprovede, aby se nevkládaly objekty na vzdálenou ořezovou rovinu.
+b) Vkládání modelu na vypočtenou pozici: Základní třída Scene definuje virtuální metodu spawnObjectAt, kterou si konkrétní scény přepisují. V EB408Scene se na vypočtené 3D souřadnice vloží nová instance modelu Shreka.
+
+3) Vytvořte možnost zadat pohybující se model a následně jej označit:
+a) V režimu pohybu uloží první kliknutí levým tlačítkem myši do scény počáteční bod a druhé kliknutí cílový bod. Vznikne struktura MovingObject uchovávající ukazatel na DrawableObject
+b) Smazání pohybujícího se modelu kliknutím: Při kliknutí na objekt v režimu výběru nejprve ověří, zda jeho stencil ID odpovídá některému prvku v seznamu movingObjects. Pokud ano, objekt je odstraněn ze seznamu pohybujících se i vykreslovaných objektů a uvolněn z paměti .
+c) Přepínání režimů interakce klávesami je popsáno ve 4)
+d) ForestScene využívá stejný mechanismus stencil pickingu a přepisuje si obě virtuální metody
+
+4) Zopakování všech ovládacích prvků:
+Počáteční mód je P.
+P - Výběr a barevné zvýraznění statických objektů při kliknutí levým tlačítkem na myši, nebo mazání pohybových objektů když se na ně v tomhle režimu klikne levým tlačítkem myšky.
+I - Vloží model (EB408Scene - Shrek, ForestScene - strom) při kliknutí levým tlačítkem na myši na viditelné ploše
+M - Zadání dvou bodů při kliknutí levým tlačítkem na myši, vloží se pak objekt (EB408Scene - Shrek, ForestScene - keř) a bude se pohybovat mezi těmito body.
+Pohyb Kamery - WASD pro pohyb + držení pravého tlačítko na myši pro směr
